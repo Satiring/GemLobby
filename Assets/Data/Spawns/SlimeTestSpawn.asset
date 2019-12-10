@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a0c4cd00634b0cb97f27861376b97c, type: 3}
+  m_Name: SlimeTestSpawn
+  m_EditorClassIdentifier: 
+  spawnName: 'Slime Spawn Test '
+  spawnItems:
+  - {fileID: 6781706321757659464, guid: 295bb96f5aa5662489ade859012d7489, type: 3}
+  - {fileID: 3178578152559722897, guid: 968c8631273073f4498da6bbb5f93528, type: 3}
+  spawnRate: 0.25
+  spawnItemsTotal: 10
+  spawnNumber: 4
+  sequenceItemsIncrements: 0.36
+  sequenceRateIncrement: 1.01

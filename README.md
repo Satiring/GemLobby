@@ -1,2 +1,2 @@
-# GemLobby
-Game TFM
+# Gems-Lobbies
+TFM Game

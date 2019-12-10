@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece217051e77439793a049eefe9e2b17, type: 3}
+  m_Name: Music Game Data
+  m_EditorClassIdentifier: 
+  menuSong: {fileID: 8300000, guid: 99a1e73aab6c22a4d98a9c17dab9da52, type: 3}
+  desertSongList:
+  - {fileID: 8300000, guid: e52847f38fb9d4846a420d32a96c1bf9, type: 3}
+  - {fileID: 8300000, guid: f58c082007bf6b04d9ddf95e2148ea24, type: 3}

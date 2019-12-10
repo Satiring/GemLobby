@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546b60483817cac4d88ee92f2a71048f, type: 3}
+  m_Name: BasicPistol
+  m_EditorClassIdentifier: 
+  weaponName: Basic Pistol
+  weaponSprite: {fileID: 7062520300279278510, guid: f528f5b92a8653f4ea45367661b2e4df,
+    type: 3}
+  bulletPrefab: {fileID: 4433621798214152336, guid: 824f8179797c1d04785f7f0b923a6794,
+    type: 3}
+  preset: {fileID: 11400000, guid: 3087bc14861d08249aa5ae85a87f5df2, type: 2}

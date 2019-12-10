@@ -1,0 +1,8 @@
+﻿TODO LIST
+
+
+[] El servicio de la camara esta fallando, no consigue registrarlo bien.
+[] Las llamadas de Shake se hacen directamnete al plugin. Cborregir
+
+[] Afinar el sistema de Data con scriptable Object. Deberia de coger los cambios. Ahora mismo el prefab hay que modificarlo.
+

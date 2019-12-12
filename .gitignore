@@ -42,10 +42,5 @@ sysinfo.txt
 #Prototype
 *steal*
 
-#plugins & Others
-Assets/Plugins/*
-Assets/Gizmos/*
-
-#TEMPORAL BANNED
-Assets/Images/*
-Assets/Tilesetter/*
+#Data Plugins - Local
+Assets/Plugins/Local Plugins/*

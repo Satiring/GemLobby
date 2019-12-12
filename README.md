@@ -5,8 +5,6 @@ TFM Game
 
 [![Build Status][travis-image]][travis-url]
 
-Uno o dos párrafos sobre tu producto y el problema que resuelve.
-
 ![](Assets/Images/MainImage.png)
 
 ## ¿Cuando estara listo?

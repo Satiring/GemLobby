@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Enemy
+public interface IEnemy
 {
     void OnAwake();
     bool IsActive();

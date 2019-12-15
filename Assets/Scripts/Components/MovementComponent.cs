@@ -5,19 +5,20 @@ using Com.LuisPedroFonseca.ProCamera2D;
 using DG.Tweening.Core.Easing;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D),typeof(Animator),typeof(BoxCollider2D))]
-public class PlayerMovement : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D),typeof(PlayerController))]
+public class MovementComponent : MonoBehaviour
 {
-    // Variables
-    [SerializeField] [Range(0, 3f)] float movementSpeed = 2f;
 
     // Cache Reference
     private Rigidbody2D _rb2D;
+    
+    
     private Animator _animator;
+    
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
-    private bool isDead;
+    private bool isMoving;
     private int totalGems;
     
     private float _radius;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {
+        _animator.
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rb2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -51,13 +53,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            IRecolectable gem = other.gameObject.GetComponent<IRecolectable>();
+            IRecolectable pickable = other.gameObject.GetComponent<IRecolectable>();
 
-            if (gem !=null)
+            if (pickable !=null)
             {
-                totalGems++;
-                gem.PickUp();
-                Destroy(other.gameObject,0.1f);
+                pickable.PickUp();
             }
                 
         }
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        if (!isDead)
+        if (isMoving)
         {
             MovementProcess();    
         }
@@ -110,19 +110,13 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private Vector2 GetNextStep(Vector2 direction, Vector2 actualPosition)
+    private Vector2 GetNextStep(Vector2 direction, Vector2 actualPosition, movementSpeed)
     {
         Vector2 nextStep = new Vector2();
         nextStep = actualPosition + (direction * movementSpeed * Time.deltaTime);
         return nextStep;
     }
     
-    private IEnumerator FlashSprite()
-    {
-        _spriteRenderer.material.SetFloat("_FlashAmount", 1);
-        yield return new WaitForSeconds(0.25f);
-        _spriteRenderer.material.SetFloat("_FlashAmount", 0);
-    }
 
     public int GetTotalGems()
     {

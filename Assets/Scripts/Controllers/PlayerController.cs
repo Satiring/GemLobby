@@ -1,18 +1,169 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator),typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
+    // TODO - Factory Task
+    public PlayerData _playerData;
+    
+    // Cache Reference
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+
+    // Private Components
+    private MovementComponent _movementComponent;
+    private HealthComponent _healthPlayer;
+    private WeaponHandlerComponent _weaponHandler;
+    
+    
+    // Private References
+        private int _actualHealth;
+        
+        private Action<int> checkMethod;
+        
+        // TODO - Implement with States
+        private bool isDead = false;
+        private bool isMoving = false;
+    
+    
+    // COlliders
+    private BoxCollider2D _boxCollider;
+    private CircleCollider2D _circleCollider;
+
+
+
+    public void Awake()
+    {
+        checkMethod = CheckLife;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         
+        // Set References
+            // CACHE
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
+            
+            // PRIVATE
+            _weaponHandler = GetComponentInChildren<WeaponHandlerComponent>();
+            _movementComponent = GetComponent<MovementComponent>();
+            
+            
+            // Health Component
+            _healthPlayer = gameObject.GetComponent<HealthComponent>();
+            _healthPlayer.Initialize(_playerData.maxHealth);
+            _healthPlayer.SubscribeHealth(checkMethod);
+            
+            
+            // COLLIDERS
+            _boxCollider = GetComponent<BoxCollider2D>();
+            _circleCollider = GetComponent<CircleCollider2D>();
+
+
+
+            // TODO - Factory Task
+            Core.Data.Set(this,"player");
+        
+        // Default
+        isDead = false;
+        isMoving = false;
+        
+        
+    }
+
+
+    private void CheckLife(int actualHealth)
+    {
+        _actualHealth = actualHealth;
+        if (actualHealth <= 0)
+        {
+            PlayerDead();
+        }
+        Debug.Log("Actual Health: " + actualHealth);
+    }
+
+    private void PlayerDead()
+    {
+        // TODO Refactor STATES
+        _boxCollider.enabled = false;
+        Core.Camera.Shake("Basic");
+        isDead = true;
+        _weaponHandler.setWeaponActive(!isDead);
+        _animator.SetBool("isDead", true);
+        StartCoroutine(Tools.FlashSprite(_spriteRenderer));
+        Destroy(this.gameObject, 5f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isDead)
+        {
+            // TODO Refactor Input Manager
+            float inputX = Core.InputService.GetXAxisValue();
+            float inputY = Core.InputService.GetYAxisValue();
+            if (inputX != 0 || inputY != 0)
+            {
+                if (!isMoving)
+                {
+                    isMoving = true;
+                    _animator.SetBool("isMoving",true);
+                }
+                _movementComponent.move(inputX, inputY,_playerData.movementSpeed);
+            }
+            else
+            {
+                isMoving = false;
+                _animator.SetBool("isMoving",false);
+            }
+
+            ChangeSpriteDirection();
+        }
+    }
+    
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         
+        IDamageDealer DamageDealer = other.gameObject.GetComponent<IDamageDealer>();
+        if (DamageDealer != null)
+        {
+            if (other.gameObject.GetComponent<EnemyController>() != null)
+            {
+                _healthPlayer.DoDamage(DamageDealer.Damage());
+            }
+            
+        }
+        else
+        {
+            IRecolectable pickable = other.gameObject.GetComponent<IRecolectable>();
+
+            if (pickable !=null)
+            {
+                pickable.PickUp();
+            }
+                
+        }
+        
+    }
+
+    private void ChangeSpriteDirection()
+    {
+        if (!_weaponHandler.isRightFaced())
+        {
+            _spriteRenderer.flipX = true;
+            _weaponHandler.setFlipY(true);
+        }
+        else
+        {
+            _spriteRenderer.flipX = false;
+            _weaponHandler.setFlipY(false);
+        }
     }
 }

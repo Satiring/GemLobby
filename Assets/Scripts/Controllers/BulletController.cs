@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D),typeof(BulletMovement),typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D),typeof(BulletMovementComponent),typeof(Rigidbody2D))]
 public class BulletController : MonoBehaviour, IDirigible
 {
     [Required][SerializeField]
@@ -39,7 +39,7 @@ public class BulletController : MonoBehaviour, IDirigible
         {
             if (bulletData.isBounce)
             {
-                GetComponent<BulletMovement>().Bounce(other);
+                GetComponent<BulletMovementComponent>().Bounce(other);
             }
             else
             {
@@ -50,14 +50,14 @@ public class BulletController : MonoBehaviour, IDirigible
        
     }
 
-    public int GeteDecrementtFactor()
+    public int GetDecrementtFactor()
     {
         return bulletData.bounceDecrementFactor;
     }
 
     public void SetDirection(Vector2 direction)
     {
-        GetComponent<BulletMovement>().InitiateMove(direction, bulletData.speed);
+        GetComponent<BulletMovementComponent>().InitiateMove(direction, bulletData.speed);
     }
     
     public float getBulletDamage()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class SceneUnityService : ISceneService
@@ -8,11 +9,14 @@ public class SceneUnityService : ISceneService
     
     public void Setup()
     {
-       
+        _data = Core.Data.Get<GameData>("gameData").SceneGameData;
     }
 
     public void Start()
     {
+        if (_data)
+            _actualScene = _data.initialSceneNumber;
+        SceneManager.LoadScene(_actualScene);
     }
 
     public void LoadScene(int sceneNumber)
@@ -20,8 +24,8 @@ public class SceneUnityService : ISceneService
         string scene;
         if (sceneNumber < _data.sceneSetupList.Count)
         {
-            SceneManager.LoadScene(sceneNumber);
             _actualScene = sceneNumber;
+            SceneManager.LoadScene(_actualScene);
         }
         else
         {
@@ -40,14 +44,9 @@ public class SceneUnityService : ISceneService
     }
     
 
-    // INNEFICIENT. Dont Save the _actualScene
+    // TODO INNEFICIENT. Dont Save the _actualScene
     public void LoadScene(string scene)
     {
-        // TO IMPLEMENT
-    }
-
-    public void Initiate(SceneGameData sceneData)
-    {
-        _data = sceneData;
+       throw new NotImplementedException();
     }
 }

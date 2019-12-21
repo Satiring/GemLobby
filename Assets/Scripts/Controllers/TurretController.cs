@@ -44,7 +44,7 @@ public class TurretController : MonoBehaviour
 
     private void DetectTarget()
     {
-        _target = Core.Data.Get<PlayerMovement>("player").gameObject;
+        //_target = Core.Data.Get<I>("player").gameObject;
     }
 
     // Update is called once per frame

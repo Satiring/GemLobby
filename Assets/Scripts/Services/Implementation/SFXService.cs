@@ -22,12 +22,7 @@ public class SFXService : ISFXService
     {
         Log.Debug("Fx Service Started");
     }
-
-    public void LoadFxData(SFXGameData fx)
-    {
-        _data = fx;
-    }
-
+    
     public void Play(AudioClip clip)
     {
         if (_audioSource)
@@ -48,7 +43,7 @@ public class SFXService : ISFXService
     
     public void Play(string clip)
     {
-        // TO IMPLEMENT
+        // TODO IMPLEMENT
     }
 
     private void setClip(AudioClip audioClip)
@@ -58,6 +53,6 @@ public class SFXService : ISFXService
 
     public void Stop()
     {
-        // TO IMPLEMENT
+        // TODO IMPLEMENT
     }
 }

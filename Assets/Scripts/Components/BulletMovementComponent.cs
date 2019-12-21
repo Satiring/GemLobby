@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D),typeof(BulletController),typeof(BoxCollider2D))]
-public class BulletMovement : MonoBehaviour
+public class BulletMovementComponent : MonoBehaviour
 {
     private Rigidbody2D _rb2d;
     private BoxCollider2D _boxCollider;
@@ -51,7 +51,7 @@ public class BulletMovement : MonoBehaviour
     
     public void Bounce(Collision2D _collision)
     {
-        var factor = GetComponent<BulletController>().GeteDecrementtFactor();
+        var factor = GetComponent<BulletController>().GetDecrementtFactor();
         _direction = Vector2.Reflect(_direction, _collision.contacts[0].normal);
         transform.rotation = Tools.getRotationToTarget(_direction);
         counter++;
@@ -60,6 +60,5 @@ public class BulletMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-   
+    
 }

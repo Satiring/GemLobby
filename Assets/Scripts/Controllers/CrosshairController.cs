@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Ju;
 using UnityEngine;
 
-public class Crosshair : MonoBehaviour
+public class CrosshairController : MonoBehaviour
 {
 
     // Update is called once per frame

@@ -12,7 +12,6 @@ public static class Bootstrap
         Services.RegisterService<IUnityService, UnityService>();
         
         // Game Service 
-        
         Services.RegisterService<IGameService,GameService>();
         
             // Music & FX
@@ -53,7 +52,7 @@ public static class Core
 
 
     // MARGINATED
-    //public static ICameraService Camera => Services.Get<ICameraService>();
+    public static ICameraService Camera => Services.Get<ICameraService>();
 }
 
 public static class Log

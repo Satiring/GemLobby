@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviour , IRecolectable
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,10 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PickUp()
+    {
+        throw new System.NotImplementedException();
     }
 }

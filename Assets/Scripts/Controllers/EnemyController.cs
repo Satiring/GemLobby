@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
-public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargeteable
+public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargeteable, IDamageDealer
 {
     // Cache Reference
     [ShowInInspector]
@@ -14,8 +14,10 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider2D;
     
+    
 
     // Data Info
+    // TODO Refactor Data Unification
     [Required]
     public EnemyData enemyData;
 
@@ -24,8 +26,11 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     [ShowInInspector]
     private bool isMoving,isDead;
 
+    private bool _isTargetNotNull;
+
     private void Start()
     {
+        _isTargetNotNull = _target != null;
         isMoving = true;
         isDead = false;
         actual_health = enemyData.health;
@@ -65,7 +70,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
 
     private void MoveEnemy()
     {
-        if (!isDead && isMoving && _target != null)
+        if (!isDead && isMoving && _isTargetNotNull)
         {
             //move towards the Target
             Vector3 actualPosition = transform.position;
@@ -122,21 +127,39 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
         Tween land = transform.DOMove(
             landPoint, 0.5f, false);
         
-        PlayerMovement player = Core.Data.Get<PlayerMovement>("player");
+        DetectTarget();
+    }
+
+    private void SetTarget(Transform playerTransform)
+    {
+        if (playerTransform != null)
+        {
+            _target = playerTransform;
+            _isTargetNotNull = true;
+            isMoving = true;
+        }
+
+    }
+
+    private void DetectTarget()
+    {
+        
+        // TODO REFACTOR COLMENA
+        PlayerController player = Core.Data.Get<PlayerController>("player");
         if (player)
         {
-            setTarget(player.transform);
+            SetTarget(player.transform);
         }
     }
-
-    private void setTarget(Transform playerTransform)
-    {
-        _target = playerTransform;
-        isMoving = true;
-    }
-
+    
+    
     public Transform GetTarget()
     {
         return transform;
+    }
+
+    public int Damage()
+    {
+        return enemyData.damage;
     }
 }

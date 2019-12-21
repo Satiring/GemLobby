@@ -1,7 +1,10 @@
-﻿namespace Data
+﻿using UnityEngine;
+
+[CreateAssetMenu(menuName = "Player/Prefab Data")]
+public class PlayerData : ScriptableObject
 {
-    public class PlayerData
-    {
-        
-    }
+    
+    [Range(0, 3f)] public float movementSpeed = 2f;
+    [Range(10, 50f)] public int maxHealth = 10;
+    
 }

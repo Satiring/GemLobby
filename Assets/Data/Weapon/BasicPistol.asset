@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicPistol
   m_EditorClassIdentifier: 
   weaponName: Basic Pistol
-  weaponSprite: {fileID: 7062520300279278510, guid: f528f5b92a8653f4ea45367661b2e4df,
+  weaponSprite: {fileID: 6913895632423826775, guid: f1c6c2a45bc5d9548a41ab5481977e52,
     type: 3}
   bulletPrefab: {fileID: 4433621798214152336, guid: 824f8179797c1d04785f7f0b923a6794,
     type: 3}

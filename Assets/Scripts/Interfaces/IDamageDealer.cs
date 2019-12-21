@@ -1,7 +1,5 @@
-﻿namespace Interfaces
+﻿public interface IDamageDealer
 {
-    public interface IDamageDealer
-    {
-        
-    }
+    int Damage();
+
 }

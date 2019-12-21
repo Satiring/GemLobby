@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Flocking : MonoBehaviour
+public class FlockingComponent : MonoBehaviour
 {
     // TODO IMPLEMENTAR
     // SRC: https://github.com/RafaelKuebler/Flocking
@@ -157,4 +157,4 @@ public class Flocking : MonoBehaviour
         if (Position.x > 14) Position = new Vector2(-14, Position.y);
         if (Position.y > 8) Position = new Vector2(Position.x, -8);
     }
-}
+}*/

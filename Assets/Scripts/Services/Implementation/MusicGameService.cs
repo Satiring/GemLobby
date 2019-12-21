@@ -8,23 +8,21 @@ public class MusicGameService :  IMusicGameService
 
     public void Setup()
     {
-        _musicPlayer = new GameObject();
-        _musicPlayer.AddComponent<AudioSource>();
-        _musicPlayer.name = "Music Player from MusicPlayerService";
-
-        _audioSource = _musicPlayer.GetComponent<AudioSource>();
+        //
+        _data = Core.Data.Get<GameData>("gameData").MusicGameData;
     }
 
     public void Start()
     {
-        // 
-        Debug.Log("Music Game Service Started");
-    }
-
-
-    public void Initiate(MusicGameData musicGameData)
-    {
-        _data = musicGameData;
+        Debug.Log("Music Game Service Start");
+        _musicPlayer = new GameObject();
+        _musicPlayer.AddComponent<AudioSource>();
+        _audioSource = _musicPlayer.GetComponent<AudioSource>();
+        
+        
+        if(_data)
+            _musicPlayer.name = "Music Player from MusicPlayerService";
+        
     }
 
     public void PlayMenuSong()

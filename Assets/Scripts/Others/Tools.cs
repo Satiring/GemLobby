@@ -40,4 +40,13 @@ public static class Tools
         v.y = (sin * tx) + (cos * ty);
         return v;
     }
+    
+    public static IEnumerator FlashSprite(SpriteRenderer spriteRenderer)
+    {
+        spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        yield return new WaitForSeconds(0.25f);
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+    }
+
+
 }

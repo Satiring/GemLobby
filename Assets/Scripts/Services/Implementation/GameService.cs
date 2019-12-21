@@ -1,42 +1,50 @@
 ﻿using UnityEngine;
 
-public class GameService  : IGameService
+public class GameService  : MonoBehaviour, IGameService
 {
     private GameData _gameData;
-    
+    private StateMachine _gameStateMachine;
+
+
     public void Setup()
     {
-       
+        _gameStateMachine = new StateMachine();
+        _gameData = Resources.Load<GameData>("defaultData");
+        if(_gameData)
+            Log.Debug("Game Data Loaded");
     }
 
     public void Start()
     {
         LoadPools();
+        StartGame();
+        LoadGameData();
     }
 
 
     public void LoadGameData(GameData gameData)
     {
-        Log.Debug("Se produce la llamada al Game service");
         if (gameData != null)
         {
             _gameData = gameData;
-            
-            Core.Music.Initiate(gameData.MusicGameData);
-            Core.SceneService.Initiate(_gameData.SceneGameData);
         }
-        
     }
-
+    
     public void StartGame()
     {
-        Debug.Log("Inicializacion Game");
+        Debug.Log("START GAME");
+        _gameStateMachine.ChangeState(new TestState());
         //Core.SceneService.RestartScenes();
-        Core.Music.PlayMenuSong();
+        //Core.Music.PlayMenuSong();
     }
 
     private void LoadPools()
     {
         // Initiate All the pools
+    }
+
+    private void LoadGameData()
+    {
+        Core.Data.Set(_gameData,"gameData");
     }
 }

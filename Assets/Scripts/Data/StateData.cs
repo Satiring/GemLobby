@@ -1,7 +1,9 @@
-﻿namespace Data
+﻿using Sirenix.OdinInspector;
+
+// GAME DATA STATE
+public class StateData : SerializedScriptableObject
 {
-    public class StateData
-    {
-        
-    }
+    
+    private int number_Gems_picked { get; set; }
+    
 }

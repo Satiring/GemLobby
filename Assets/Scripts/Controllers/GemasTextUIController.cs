@@ -9,7 +9,7 @@ public class GemasTextUIController : MonoBehaviour
 {
     private TextMeshProUGUI _textMeshPro;
     public string message;
-    private PlayerMovement _playerMovement;
+    //private PlayerMovement _playerMovement;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class GemasTextUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerMovement)
+        /*if (_playerMovement)
         {
             if (_textMeshPro)
             {
@@ -28,6 +28,6 @@ public class GemasTextUIController : MonoBehaviour
 
         }else{
             _playerMovement = Core.Data.Get<PlayerMovement>("player");
-        }
+        }*/
     }
 }

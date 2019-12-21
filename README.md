@@ -30,8 +30,7 @@ Nada, deberias de atender tus cosas.
 
 ## Meta
 
-Jose Angel – [@Satiring](https://twitter.com/Satiring) – escuelaps@gmail.com
-Eliboo 
+Jose Angel – [@Satiring](https://twitter.com/Satiring) – escuelaps@gmail.comWW
 
 [https://github.com/Satiring/GemLobby](This repo.)
 

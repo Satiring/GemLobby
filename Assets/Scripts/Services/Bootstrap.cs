@@ -24,8 +24,7 @@ public static class Bootstrap
         Services.RegisterService<ISceneService,SceneUnityService>();
         
         
-        // TODO Services
-        // Implement PoolInfoData
+
         //Services.RegisterService<IObjectPoolService,ObjectPoolService>();
         
         

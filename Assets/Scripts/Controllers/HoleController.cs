@@ -17,12 +17,7 @@ public class HoleController : MonoBehaviour
     {
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _spawnerComponent = GetComponent<SpawnerComponent>();
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(!_spawnerComponent.IsActive())
-            _spawnerComponent.Activate();
+        _spawnerComponent.Activate();
     }
 
 }    

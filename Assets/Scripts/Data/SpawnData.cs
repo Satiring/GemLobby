@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("Data/Spawn"))]
 public class SpawnData : ScriptableObject
 {
-    public string spawnName;
+    public string poolName;
     public List<GameObject> spawnItems;
     public float spawnRate;
     public int spawnItemsTotal;

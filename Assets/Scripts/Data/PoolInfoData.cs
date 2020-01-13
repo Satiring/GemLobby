@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-[System.Serializable][CreateAssetMenu(fileName = "Data/PoolInfo")]
+[System.Serializable]
+[CreateAssetMenu(menuName = "Data/PoolInfo")]
 public class PoolInfoData : ScriptableObject
 {
     public string poolName;

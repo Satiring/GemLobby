@@ -74,10 +74,10 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
         {
             
             //move towards the Target
-            /*Vector3 actualPosition = transform.position;
+            Vector3 actualPosition = transform.position;
             Vector2 direction = _target.position - actualPosition;
             Vector2 nextPosition = Tools.GetNextStep(direction, actualPosition, enemyData.moveSpeed);
-            transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);*/
+            transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);
         }
     }
     
@@ -86,12 +86,11 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     {
         isEnemyDead(true);
         _collider2D.enabled = false;
-        Destroy(this.gameObject, 0.3f);
+        Destroy(gameObject, 0.3f);
     }
 
     public void ProcessHit(int damage)
     {
-        StartCoroutine(FlashSprite());
         actual_health -= damage;
         if (actual_health <= enemyData.health)
         {
@@ -109,15 +108,6 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     {
         isDead = b;
         _animator.SetBool("isDead", b);
-    }
-
-    private IEnumerator FlashSprite()
-    {
-        isEnemyMoving(false);
-        _spriteRenderer.material.SetFloat("_FlashAmount", 1);
-        yield return new WaitForSeconds(0.2f);
-        _spriteRenderer.material.SetFloat("_FlashAmount", 0);
-        isEnemyMoving(true);
     }
 
     public void Activate()

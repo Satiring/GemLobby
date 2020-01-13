@@ -11,16 +11,13 @@ public class TurretController : MonoBehaviour
     private Animator _animator;
 
     private TurretHeadController _head;
-    private GameObject _target;
+    private ITargeteable _target;
     
     [Range(0, 10)] public float speed;
-    
-    [SerializeField]
-    private GameObject _crosshair;
-    
-    
-    
-    
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +33,7 @@ public class TurretController : MonoBehaviour
     
     private void WeaponLookAtTarget()
     {
-        Vector2 direction = _target.transform.position - _head.transform.position;
+        Vector2 direction = _target.GetTarget().position - _head.transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             _head.transform.rotation = Quaternion.Slerp(_head.transform.rotation, rotation, speed * Time.deltaTime);
@@ -44,7 +41,13 @@ public class TurretController : MonoBehaviour
 
     private void DetectTarget()
     {
-        //_target = Core.Data.Get<I>("player").gameObject;
+        /*Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            hitColliders[i].SendMessage("AddDamage");
+            i++;
+        }*/
     }
 
     // Update is called once per frame

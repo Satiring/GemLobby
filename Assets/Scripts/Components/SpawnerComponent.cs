@@ -65,7 +65,6 @@ public class SpawnerComponent : MonoBehaviour
                 {
                     isFinished = (itemSpawned > spawnData.spawnItemsTotal);
                 }
-
             }
         }
     }
@@ -75,9 +74,9 @@ public class SpawnerComponent : MonoBehaviour
     {
         for (int e = 0; e < spawnData.spawnNumber; e++)
         {
-                    
+            //GameObject gc = Core.Pool.GetObjectFromPool(spawnData.poolName, transform.position, Quaternion.identity);
             Instantiate(
-                    spawnData.spawnItems[Random.Range(0, spawnData.spawnItems.Count)]
+                    spawnData.spawnItems[Random.Range(0, spawnData.spawnItems.Count-1)]
                     , transform.position, Quaternion.identity)
                 .GetComponent<ISpawneable>()
                 .Activate();

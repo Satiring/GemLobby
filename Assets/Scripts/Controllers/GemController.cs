@@ -34,7 +34,7 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
         Tween land = transform.DOJump(
             landPoint, gemdata.jumpPower, 0, gemdata.jumpDuration, false);
         //StartCoroutine(Tools.StartCountdown(gemdata.maxLifeTime));
-        
+         
         Destroy(gameObject, gemdata.maxLifeTime);
     }
 

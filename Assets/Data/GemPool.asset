@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a0c4cd00634b0cb97f27861376b97c, type: 3}
-  m_Name: SlimeTestSpawn
+  m_Script: {fileID: 11500000, guid: 1fc33ab3921e431cb955f68c9ef8610e, type: 3}
+  m_Name: GemPool
   m_EditorClassIdentifier: 
-  spawnName: 'Slime Spawn Test '
-  spawnItems:
-  - {fileID: 0}
-  spawnRate: 0.25
-  spawnItemsTotal: 10
-  spawnNumber: 4
-  sequenceItemsIncrements: 0.36
-  sequenceRateIncrement: 1.01
+  poolName: 
+  prefab: {fileID: 0}
+  poolSize: 0
+  fixedSize: 0

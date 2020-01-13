@@ -20,7 +20,6 @@ public class SFXService : ISFXService
 
     public void Start()
     {
-        Log.Debug("Fx Service Started");
     }
     
     public void Play(AudioClip clip)

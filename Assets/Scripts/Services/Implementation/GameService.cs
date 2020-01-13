@@ -16,7 +16,6 @@ public class GameService  : MonoBehaviour, IGameService
 
     public void Start()
     {
-        LoadPools();
         StartGame();
         LoadGameData();
     }
@@ -34,13 +33,6 @@ public class GameService  : MonoBehaviour, IGameService
     {
         Debug.Log("START GAME");
         _gameStateMachine.ChangeState(new TestState());
-        //Core.SceneService.RestartScenes();
-        //Core.Music.PlayMenuSong();
-    }
-
-    private void LoadPools()
-    {
-        // Initiate All the pools
     }
 
     private void LoadGameData()

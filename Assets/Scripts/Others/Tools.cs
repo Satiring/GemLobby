@@ -48,5 +48,14 @@ public static class Tools
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
     }
 
-
+    public static IEnumerator DestroyCountdown(int countDownValue, GameObject toDestroy)
+    {
+        float current = countDownValue;
+        while (current > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            current--;
+        }
+        GameObject.Destroy(toDestroy);
+    }
 }

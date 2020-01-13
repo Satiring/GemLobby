@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider2D;
-    
+    private FlockingComponent _flocking;
     
 
     // Data Info
@@ -72,11 +72,12 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     {
         if (!isDead && isMoving && _isTargetNotNull)
         {
+            
             //move towards the Target
-            Vector3 actualPosition = transform.position;
+            /*Vector3 actualPosition = transform.position;
             Vector2 direction = _target.position - actualPosition;
             Vector2 nextPosition = Tools.GetNextStep(direction, actualPosition, enemyData.moveSpeed);
-            transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);
+            transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);*/
         }
     }
     

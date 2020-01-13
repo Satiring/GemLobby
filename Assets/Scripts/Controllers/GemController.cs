@@ -9,7 +9,8 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
 {
     [SerializeField][Required]
     public GemData gemdata;
-
+    
+    
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private BoxCollider2D _boxCollider2D;
@@ -32,7 +33,9 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
         var landPoint = actualPosition + (nextPosition);
         Tween land = transform.DOJump(
             landPoint, gemdata.jumpPower, 0, gemdata.jumpDuration, false);
-
+        //StartCoroutine(Tools.StartCountdown(gemdata.maxLifeTime));
+        
+        Destroy(gameObject, gemdata.maxLifeTime);
     }
 
     public void PickUp()

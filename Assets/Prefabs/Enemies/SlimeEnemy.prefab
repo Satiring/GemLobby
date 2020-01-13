@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6781706321757659463}
   - component: {fileID: 6781706321757659462}
   - component: {fileID: 6781706321757659465}
+  - component: {fileID: -7649211811107843756}
   m_Layer: 0
   m_Name: SlimeEnemy
   m_TagString: Untagged
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1058384293
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2278896143598641200, guid: 6b61946602535c3498d3acaabddd04b7,
     type: 3}
@@ -155,3 +156,21 @@ CircleCollider2D:
   m_Offset: {x: -0.020046107, y: -0.12176756}
   serializedVersion: 2
   m_Radius: 0.38454202
+--- !u!114 &-7649211811107843756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781706321757659464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f1c24f6da04b8695dd6025ad400084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flockingData: {fileID: 11400000, guid: 9780b65172e4cf34da34baa5d0985a84, type: 2}
+  separationAmount: 1
+  cohesionAmount: 1
+  alignmentAmount: 1
+  acceleration: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}

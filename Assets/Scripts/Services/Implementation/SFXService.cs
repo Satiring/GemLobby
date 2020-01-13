@@ -14,7 +14,7 @@ public class SFXService : ISFXService
         _audioSource = _fxPlayer.GetComponent<AudioSource>();
         if (_audioSource)
         {
-            Log.Debug("_audiosource in PlayerFX listo");
+            
         }
     }
 

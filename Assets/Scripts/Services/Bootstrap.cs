@@ -47,11 +47,7 @@ public static class Core
     public static IGameService Game => Services.Get<IGameService>();
     public static IMusicGameService Music => Services.Get<IMusicGameService>();
     public static ISFXService Fx => Services.Get<ISFXService>();
-
     public static ISceneService SceneService => Services.Get<ISceneService>();
-
-
-    // MARGINATED
     public static ICameraService Camera => Services.Get<ICameraService>();
 }
 

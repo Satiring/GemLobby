@@ -1,19 +1,16 @@
-﻿/*using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class FlockingComponent : MonoBehaviour
 {
-    // TODO IMPLEMENTAR
     // SRC: https://github.com/RafaelKuebler/Flocking
-    
-    public Vector3 baseRotation;
+    // Edited to deleted the rotation and added a Data for the config Vars
 
-    [Range(0, 10)] public float maxSpeed = 1f;
+    public FlockingData flockingData;
 
-    [Range(.1f, .5f)] public float maxForce = .03f;
+    private bool isActive;
 
-    [Range(1, 10)] public float neighborhoodRadius = 3f;
 
     [Range(0, 3)] public float separationAmount = 1f;
 
@@ -21,8 +18,8 @@ public class FlockingComponent : MonoBehaviour
 
     [Range(0, 3)] public float alignmentAmount = 1f;
 
-    public Vector2 acceleration;
-    public Vector2 velocity;
+    private Vector2 _acceleration;
+    private Vector2 _velocity;
 
     private Vector2 Position
     {
@@ -33,66 +30,62 @@ public class FlockingComponent : MonoBehaviour
     private void Start()
     {
         float angle = Random.Range(0, 2 * Mathf.PI);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
-        velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        _velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        if (flockingData)
+        {
+            isActive = false;
+        }
     }
 
     private void Update()
     {
-        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius);
-        var boids = boidColliders.Select(o => o.GetComponent<Flocking>()).ToList();
+        var boidColliders = Physics2D.OverlapCircleAll(Position, flockingData.neighborhoodRadius);
+        var boids = boidColliders.Select(o => o.GetComponent<FlockingComponent>()).ToList();
         boids.Remove(this);
 
         Flock(boids);
         UpdateVelocity();
         UpdatePosition();
-        UpdateRotation();
         WrapAround();
     }
 
-    private void Flock(IEnumerable<Flocking> boids)
+    private void Flock(IEnumerable<FlockingComponent> boids)
     {
         var alignment = Alignment(boids);
         var separation = Separation(boids);
         var cohesion = Cohesion(boids);
 
-        acceleration = alignmentAmount * alignment + cohesionAmount * cohesion + separationAmount * separation;
+        _acceleration = alignmentAmount * alignment + cohesionAmount * cohesion + separationAmount * separation;
     }
 
     public void UpdateVelocity()
     {
-        velocity += acceleration;
-        velocity = LimitMagnitude(velocity, maxSpeed);
+        _velocity += _acceleration;
+        _velocity = LimitMagnitude(_velocity, flockingData.maxSpeed);
     }
 
     private void UpdatePosition()
     {
-        Position += velocity * Time.deltaTime;
+        Position += _velocity * Time.deltaTime;
     }
 
-    private void UpdateRotation()
-    {
-        var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
-    }
-
-    private Vector2 Alignment(IEnumerable<Flocking> boids)
+    private Vector2 Alignment(IEnumerable<FlockingComponent> boids)
     {
         var velocity = Vector2.zero;
         if (!boids.Any()) return velocity;
 
         foreach (var boid in boids)
         {
-            velocity += boid.velocity;
+            velocity += boid._velocity;
         }
 
         velocity /= boids.Count();
 
-        var steer = Steer(velocity.normalized * maxSpeed);
+        var steer = Steer(velocity.normalized * flockingData.maxSpeed);
         return steer;
     }
 
-    private Vector2 Cohesion(IEnumerable<Flocking> boids)
+    private Vector2 Cohesion(IEnumerable<FlockingComponent> boids)
     {
         if (!boids.Any()) return Vector2.zero;
 
@@ -105,14 +98,14 @@ public class FlockingComponent : MonoBehaviour
         var average = sumPositions / boids.Count();
         var direction = average - Position;
 
-        var steer = Steer(direction.normalized * maxSpeed);
+        var steer = Steer(direction.normalized * flockingData.maxSpeed);
         return steer;
     }
 
-    private Vector2 Separation(IEnumerable<Flocking> boids)
+    private Vector2 Separation(IEnumerable<FlockingComponent> boids)
     {
         var direction = Vector2.zero;
-        boids = boids.Where(o => DistanceTo(o) <= neighborhoodRadius / 2);
+        boids = boids.Where(o => DistanceTo(o) <= flockingData.neighborhoodRadius / 2);
         if (!boids.Any()) return direction;
 
         foreach (var boid in boids)
@@ -123,19 +116,19 @@ public class FlockingComponent : MonoBehaviour
 
         direction /= boids.Count();
 
-        var steer = Steer(direction.normalized * maxSpeed);
+        var steer = Steer(direction.normalized * flockingData.maxSpeed);
         return steer;
     }
 
     private Vector2 Steer(Vector2 desired)
     {
-        var steer = desired - velocity;
-        steer = LimitMagnitude(steer, maxForce);
+        var steer = desired - _velocity;
+        steer = LimitMagnitude(steer, flockingData.maxForce);
 
         return steer;
     }
 
-    private float DistanceTo(Flocking boid)
+    private float DistanceTo(FlockingComponent boid)
     {
         return Vector3.Distance(boid.transform.position, Position);
     }
@@ -157,4 +150,4 @@ public class FlockingComponent : MonoBehaviour
         if (Position.x > 14) Position = new Vector2(-14, Position.y);
         if (Position.y > 8) Position = new Vector2(Position.x, -8);
     }
-}*/
+}

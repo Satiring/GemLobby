@@ -33,8 +33,9 @@ public class BulletController : MonoBehaviour, IDirigible
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
+        
         WallController wallController = other.gameObject.GetComponent<WallController>();
+        IDamageable hit = other.gameObject.GetComponent<IDamageable>();
         if (wallController)
         {
             if (bulletData.isBounce)
@@ -46,6 +47,10 @@ public class BulletController : MonoBehaviour, IDirigible
                 Destroy(gameObject);
             }
             
+        }else if (hit != null)
+        {
+            hit.ProcessHit(bulletData.damage);
+            Destroy(gameObject);
         }
        
     }

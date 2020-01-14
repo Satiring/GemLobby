@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a0c4cd00634b0cb97f27861376b97c, type: 3}
   m_Name: SlimeTestSpawn
   m_EditorClassIdentifier: 
-  spawnName: 'Slime Spawn Test '
+  poolName: SlimeSpawn
   spawnItems:
-  - {fileID: 0}
-  spawnRate: 0.25
-  spawnItemsTotal: 10
-  spawnNumber: 4
+  - {fileID: 6781706321757659464, guid: 295bb96f5aa5662489ade859012d7489, type: 3}
+  spawnRate: 10
+  spawnItemsTotal: 5
+  spawnNumber: 1
   sequenceItemsIncrements: 0.36
   sequenceRateIncrement: 1.01

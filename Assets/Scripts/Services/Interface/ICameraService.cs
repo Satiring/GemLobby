@@ -7,5 +7,5 @@
         
         void Shake(string shakePreset);
         void Shake(ShakePreset preset);
-
+        void AddTarget(Transform newTarget);
     }

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private MovementComponent _movementComponent;
     private HealthComponent _healthPlayer;
     private WeaponHandlerComponent _weaponHandler;
-    
+    private TurretHandlerComponent _turretHandler;
     
     // Private References
         private int _actualHealth;
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
             // PRIVATE
             _weaponHandler = GetComponentInChildren<WeaponHandlerComponent>();
             _movementComponent = GetComponent<MovementComponent>();
+            _turretHandler = GetComponent<TurretHandlerComponent>();
             
             
             // Health Component
@@ -69,7 +70,9 @@ public class PlayerController : MonoBehaviour
 
             // TODO - Factory Task
             Core.Data.Set(this,"player");
-        
+            //Core.Camera.AddTarget(transform);
+            
+            
         // Default
         isDead = false;
         isMoving = false;
@@ -123,6 +126,13 @@ public class PlayerController : MonoBehaviour
                 _animator.SetBool("isMoving",false);
             }
 
+            if (Core.InputService.IsDeployedPress())
+            {
+                Vector2 Direction = _weaponHandler.GetCrosshairPosition();
+                _turretHandler.Deploy(Direction);
+            }
+            
+            
             ChangeSpriteDirection();
         }
     }

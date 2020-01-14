@@ -29,7 +29,6 @@ public class UnityCameraService : ICameraService
                 isProCameraActive = true;
             }
         }
-        
     }
 
     public void Shake(string shakePreset)
@@ -40,5 +39,10 @@ public class UnityCameraService : ICameraService
     public void Shake(ShakePreset preset)
     {
         ProCamera2DShake.Instance.Shake(preset);
+    }
+
+    public void AddTarget(Transform newTarget)
+    {
+        _proCamera2D.AddCameraTarget(newTarget);  
     }
 }

@@ -93,6 +93,12 @@ public class WeaponHandlerComponent : MonoBehaviour
         isActive = b;
     }
 
+
+    public Vector2 GetCrosshairPosition()
+    {
+        return _crosshair.transform.position;
+    }
+    
     public bool isRightFaced()
     {
         return (_crosshair.gameObject.transform.position.x > _pivot.gameObject.transform.position.x);

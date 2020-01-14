@@ -30,9 +30,9 @@ Nada, deberias de atender tus cosas.
 
 ## Meta
 
-Jose Angel – [@Satiring](https://twitter.com/Satiring) – escuelaps@gmail.comWW
+Jose Angel – [@Satiring](https://twitter.com/Satiring) – escuelaps@gmail.com
 
-[https://github.com/Satiring/GemLobby](This repo.)
+[https://github.com/Satiring/GemLobby] - (This repo.)
 
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics

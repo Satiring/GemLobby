@@ -34,6 +34,7 @@ public class SpawnerComponent : MonoBehaviour
             isFinished = false;
             itemSpawned = 0;
             elapsedTime = 0;
+            Generate();
         }
     }
     
@@ -76,10 +77,7 @@ public class SpawnerComponent : MonoBehaviour
         {
             //GameObject gc = Core.Pool.GetObjectFromPool(spawnData.poolName, transform.position, Quaternion.identity);
             Instantiate(
-                    spawnData.spawnItems[Random.Range(0, spawnData.spawnItems.Count-1)]
-                    , transform.position, Quaternion.identity)
-                .GetComponent<ISpawneable>()
-                .Activate();
+                    spawnData.spawnItems[0], transform.position, Quaternion.identity).GetComponent<ISpawneable>().Activate();
             itemSpawned++;
         }
     }

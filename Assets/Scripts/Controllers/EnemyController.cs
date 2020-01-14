@@ -13,8 +13,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider2D;
-    private FlockingComponent _flocking;
-    
+
 
     // Data Info
     // TODO Refactor Data Unification
@@ -38,12 +37,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator.SetBool("isMoving", true);
         _collider2D = GetComponent<CircleCollider2D>();
-        AddToPool();
-    }
 
-    private void AddToPool()
-    {
-        // añade a la poool
     }
 
     void Update()
@@ -74,9 +68,15 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
         {
             
             //move towards the Target
+            isEnemyMoving(true);
             Vector3 actualPosition = transform.position;
             Vector2 direction = _target.position - actualPosition;
             Vector2 nextPosition = Tools.GetNextStep(direction, actualPosition, enemyData.moveSpeed);
+            Collider2D[] ray = Physics2D.OverlapCircleAll(nextPosition,1f);
+            foreach (var var in ray)
+            {
+                //Log.Debug(var.gameObject.name);
+            }
             transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);
         }
     }

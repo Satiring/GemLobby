@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0c6ca903b44203988ac2d3831f22a9, type: 3}
-  m_Name: Test Game
+  m_Script: {fileID: 11500000, guid: 488fa6a1a63f4956849c14935311520b, type: 3}
+  m_Name: UIData
   m_EditorClassIdentifier: 
-  MusicGameData: {fileID: 11400000, guid: d6f90717f46a21542967c6af309cb985, type: 2}
-  SceneGameData: {fileID: 11400000, guid: c6a37fb45f6465f40b3773102384bb32, type: 2}
+  turretAvailable: {fileID: 21300000, guid: 0df9977b7946a2b429a81b18d5663b8b, type: 3}
+  turretUnavailable: {fileID: 21300000, guid: b5c5f2f6e52cb894cba6f687b3b95e54, type: 3}

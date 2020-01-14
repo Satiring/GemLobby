@@ -1,21 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
 
 [RequireComponent(typeof(SpriteRenderer),typeof(Animator))]
 public class TurretController : MonoBehaviour
 {
+    [Range(0f,20f)]
+    public float detectRadius = 1f;
+    
+    
     private bool isDeploy;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+    public SpriteRenderer grabIcon;
 
+    private CircleCollider2D _collider;
+    
     private TurretHeadController _head;
     private ITargeteable _target;
+
+    private bool isPlayerNear;
     
     [Range(0, 10)] public float speed;
 
-
+    public void Awake()
+    {
+        GetComponent<CircleCollider2D>();
+    }
 
 
     // Start is called before the first frame update
@@ -24,11 +38,14 @@ public class TurretController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _head = GetComponentInChildren<TurretHeadController>();
+        _collider = GetComponent<CircleCollider2D>();
         if (_head)
         {
             _head.gameObject.SetActive(false);
         }
         isDeployed(false);
+        isPlayerNear = false;
+        grabIcon.enabled = false;
     }
     
     private void WeaponLookAtTarget()
@@ -41,19 +58,22 @@ public class TurretController : MonoBehaviour
 
     private void DetectTarget()
     {
-        /*Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
+        Collider2D[] ray = Physics2D.OverlapCircleAll(gameObject.transform.position,detectRadius);
+        bool isWallorWater = false;
+        
+        foreach (var var in ray)
         {
-            hitColliders[i].SendMessage("AddDamage");
-            i++;
-        }*/
+            if (var.GetComponent<WallController>()||var.GetComponent<WaterController>())
+            {
+                isWallorWater = true;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         if (isDeploy)
         {
             if (_target != null)
@@ -65,8 +85,20 @@ public class TurretController : MonoBehaviour
             {
                 DetectTarget();
             }
+
+
+            if (isPlayerNear)
+            {
+                grabIcon.enabled = true;
+            }
+            else
+            {
+                grabIcon.enabled = false;
+            }
             
         }
+        
+        
     }
 
     // Animation Event Call
@@ -79,7 +111,9 @@ public class TurretController : MonoBehaviour
 
     public void Activate()
     {
+        
         _animator.SetTrigger("Deploy");
+        _collider.enabled = true;
     }
     
     public void isDeployed(bool b)
@@ -87,5 +121,27 @@ public class TurretController : MonoBehaviour
         isDeploy = b;
         _animator.SetBool("isDeployed",b);
     }
-    
+
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player)
+        {
+            isPlayerNear = true;
+            grabIcon.enabled = true;
+            Log.Debug("Player Entrando");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player)
+        {
+            isPlayerNear = false;
+            grabIcon.enabled = false;
+            Log.Debug("Player Saliendo");
+        }
+    }
 }

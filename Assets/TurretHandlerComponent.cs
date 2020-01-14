@@ -8,7 +8,7 @@ public class TurretHandlerComponent : MonoBehaviour
 {
 
     public GameObject AttackTurretPrefab;
-    private GameObject Turret;
+    public GameObject Turret;
     private bool isDesployAllowedInPosition = false;
     private TweenCallback landFinish;
     
@@ -30,6 +30,7 @@ public class TurretHandlerComponent : MonoBehaviour
                     _transform, 2, 0, 1, false);
                 yield return land.WaitForCompletion();
                 Turret.GetComponent<TurretController>().Activate();
+                Core.UIService.IsTurretUnavailable();
             }
         }
         
@@ -37,7 +38,7 @@ public class TurretHandlerComponent : MonoBehaviour
 
     private void CheckWall(Vector2 _transform)
     {
-        Collider2D[] ray = Physics2D.OverlapCircleAll(_transform,1f);
+        Collider2D[] ray = Physics2D.OverlapCircleAll(_transform,0.5f);
         bool isWallorWater = false;
         
         foreach (var var in ray)

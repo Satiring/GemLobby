@@ -8,4 +8,6 @@ public interface IInputService : IService
     bool IsShootPress();
 
     bool IsDeployedPress();
+
+    bool isGrabPress();
 }

@@ -22,7 +22,7 @@ public static class Bootstrap
         Services.RegisterService<IInputService,UnityInputService>();
         Services.RegisterService<ICameraService,UnityCameraService>();
         Services.RegisterService<ISceneService,SceneUnityService>();
-        
+        Services.RegisterService<IUIService,UIServiceUnity>();
         
 
         //Services.RegisterService<IObjectPoolService,ObjectPoolService>();
@@ -48,6 +48,7 @@ public static class Core
     public static ISFXService Fx => Services.Get<ISFXService>();
     public static ISceneService SceneService => Services.Get<ISceneService>();
     public static ICameraService Camera => Services.Get<ICameraService>();
+    public static IUIService UIService => Services.Get<IUIService>();
 }
 
 public static class Log

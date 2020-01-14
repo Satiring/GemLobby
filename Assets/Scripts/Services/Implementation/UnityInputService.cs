@@ -33,5 +33,9 @@ public class UnityInputService : IInputService
     {
         return Input.GetKeyDown(KeyCode.Mouse1);
     }
-    
+
+    public bool isGrabPress()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }

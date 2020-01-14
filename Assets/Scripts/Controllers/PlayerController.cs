@@ -132,7 +132,11 @@ public class PlayerController : MonoBehaviour
                 _turretHandler.Deploy(Direction);
             }
             
-            
+            if (Core.InputService.isGrabPress())
+            {
+                Tools.FlashSprite(_turretHandler.Turret.GetComponent<SpriteRenderer>());
+                DeleteTurret();
+            }
             ChangeSpriteDirection();
         }
     }
@@ -163,6 +167,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void DeleteTurret()
+    {
+        Destroy(_turretHandler.Turret,0.3f);
+        Core.UIService.IsTurretAvailable();
+    }
+    
+    
     private void ChangeSpriteDirection()
     {
         if (!_weaponHandler.isRightFaced())

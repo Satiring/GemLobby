@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a0c6ca903b44203988ac2d3831f22a9, type: 3}
-  m_Name: defaultData
+  m_Name: Test Game Useless
   m_EditorClassIdentifier: 
-  UIData: {fileID: 11400000, guid: 62e79cc262dfa514899326008be77b7c, type: 2}
+  UIData: {fileID: 0}
   MusicGameData: {fileID: 11400000, guid: d6f90717f46a21542967c6af309cb985, type: 2}
   SceneGameData: {fileID: 11400000, guid: c6a37fb45f6465f40b3773102384bb32, type: 2}

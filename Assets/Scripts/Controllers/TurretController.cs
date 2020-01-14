@@ -53,10 +53,6 @@ public class TurretController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Core.InputService.IsDeployedPress())
-        {
-            _animator.SetTrigger("Deploy");
-        }
 
         if (isDeploy)
         {
@@ -80,6 +76,12 @@ public class TurretController : MonoBehaviour
         _head.gameObject.SetActive(true);
     }
 
+
+    public void Activate()
+    {
+        _animator.SetTrigger("Deploy");
+    }
+    
     public void isDeployed(bool b)
     {
         isDeploy = b;

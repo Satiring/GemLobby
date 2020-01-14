@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1062956805071294046}
   - component: {fileID: 8816062172168926165}
   - component: {fileID: -8213132834172261134}
+  - component: {fileID: 267204403745057727}
   m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
@@ -79,3 +80,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &267204403745057727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505208798907891165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d3bb52a07ef9f44b5431e522a260c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

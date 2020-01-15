@@ -10,6 +10,8 @@ public class MusicGameService :  IMusicGameService
     {
         //
         _data = Core.Data.Get<GameData>("gameData").MusicGameData;
+        if(_data)
+            Log.Debug("Music Game Data Loaded");
     }
 
     public void Start()
@@ -18,16 +20,19 @@ public class MusicGameService :  IMusicGameService
         _musicPlayer = new GameObject();
         _musicPlayer.AddComponent<AudioSource>();
         _audioSource = _musicPlayer.GetComponent<AudioSource>();
-        
-        
+
         if(_data)
             _musicPlayer.name = "Music Player from MusicPlayerService";
-        
     }
 
     public void PlayMenuSong()
     {
        Play(_data.menuSong);
+    }
+
+    public void PlayRandom()
+    {
+        Play(_data.desertSongList[0]);
     }
 
     public void Play(AudioClip clip)

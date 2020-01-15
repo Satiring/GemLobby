@@ -3,5 +3,7 @@
 public interface IGameService : IService
 {
     void LoadGameData(GameData gameData);
-    void StartGame();
+   void StartGame();
+   void FinishGame();
+   void Restart();
 }

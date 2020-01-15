@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName = "Config/Scene Game Data")]
 public class SceneGameData : ScriptableObject
 {
-   
+   public bool isActive = false;
    public int initialSceneNumber;
    public List<SceneSetup> sceneSetupList;
 

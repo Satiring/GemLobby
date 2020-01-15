@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     // TODO - Factory Task
     public PlayerData _playerData;
+    public GameStateSharedData GameStateShared;
     
     // Cache Reference
     private Animator _animator;
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
                 _animator.SetBool("isMoving",false);
             }
 
+            
             if (Core.InputService.IsDeployedPress())
             {
                 Vector2 Direction = _weaponHandler.GetCrosshairPosition();
@@ -138,6 +140,16 @@ public class PlayerController : MonoBehaviour
                 DeleteTurret();
             }
             ChangeSpriteDirection();
+            
+            if (GameStateShared)
+            {
+                if (GameStateShared.gemsPicked >= 10)
+                {
+                
+                    Core.Game.FinishGame();
+                }    
+            }
+            
         }
     }
     
@@ -161,6 +173,7 @@ public class PlayerController : MonoBehaviour
             if (pickable !=null)
             {
                 pickable.PickUp();
+                GameStateShared.gemsPicked++;
             }
                 
         }

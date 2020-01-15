@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshPro))]
 public class GemasTextUIController : MonoBehaviour
 {
+
+    public GameStateSharedData gameStateShared;
     private TextMeshProUGUI _textMeshPro;
     public string message;
     //private PlayerMovement _playerMovement;
@@ -19,15 +21,11 @@ public class GemasTextUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (_playerMovement)
-        {
+
             if (_textMeshPro)
             {
-                _textMeshPro.text = message + " " + _playerMovement.GetTotalGems();    
+                _textMeshPro.text = message + " " +  gameStateShared.gemsPicked;    
             }
-
-        }else{
-            _playerMovement = Core.Data.Get<PlayerMovement>("player");
-        }*/
+            
     }
 }

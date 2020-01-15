@@ -15,8 +15,12 @@ public class SceneUnityService : ISceneService
     public void Start()
     {
         if (_data)
+        {
             _actualScene = _data.initialSceneNumber;
-        SceneManager.LoadScene(_actualScene);
+            if(_data.isActive)
+                SceneManager.LoadScene(_actualScene);
+        }
+            
     }
 
     public void LoadScene(int sceneNumber)

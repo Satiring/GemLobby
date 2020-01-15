@@ -9,15 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a09360207db48c58aa7f1855f75ca07, type: 3}
-  m_Name: Scenas
+  m_Script: {fileID: 11500000, guid: 2022efb691874541a89893f30fddc6c0, type: 3}
+  m_Name: SharedGems
   m_EditorClassIdentifier: 
-  isActive: 0
-  initialSceneNumber: 1
-  sceneSetupList:
-  - sceneName: MainMenu
-    sceneNumber: 0
-  - sceneName: GameBasic
-    sceneNumber: 1
-  - sceneName: End
-    sceneNumber: 2
+  gemsPicked: 0

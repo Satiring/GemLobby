@@ -15,8 +15,8 @@ MonoBehaviour:
   poolName: SlimeSpawn
   spawnItems:
   - {fileID: 6781706321757659464, guid: 295bb96f5aa5662489ade859012d7489, type: 3}
-  spawnRate: 10
+  spawnRate: 1
   spawnItemsTotal: 5
-  spawnNumber: 1
+  spawnNumber: 3
   sequenceItemsIncrements: 0.36
   sequenceRateIncrement: 1.01

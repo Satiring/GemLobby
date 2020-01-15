@@ -72,11 +72,6 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
             Vector3 actualPosition = transform.position;
             Vector2 direction = _target.position - actualPosition;
             Vector2 nextPosition = Tools.GetNextStep(direction, actualPosition, enemyData.moveSpeed);
-            Collider2D[] ray = Physics2D.OverlapCircleAll(nextPosition,1f);
-            foreach (var var in ray)
-            {
-                //Log.Debug(var.gameObject.name);
-            }
             transform.position = new Vector3(nextPosition.x, nextPosition.y, actualPosition.z);
         }
     }
@@ -92,6 +87,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     public void ProcessHit(int damage)
     {
         actual_health -= damage;
+        Tools.FlashSprite(_spriteRenderer);
         if (actual_health <= enemyData.health)
         {
             ProcessDeath();

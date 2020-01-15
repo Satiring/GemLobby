@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5971460961563706345}
   - component: {fileID: 6648060491093605078}
+  - component: {fileID: 7806215812967493360}
   m_Layer: 14
   m_Name: TurretHeadSprite
   m_TagString: Untagged
@@ -135,14 +136,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5928885851356739890}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 0.059, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1291147, w: 0.9916297}
+  m_LocalPosition: {x: -0.062, y: 0.225, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4173817976694395451}
-  m_Father: {fileID: 6571020515734166716}
+  m_Father: {fileID: 6571020515690715627}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14.837001}
 --- !u!212 &6648060491093605078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -194,6 +195,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &7806215812967493360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928885851356739890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed19ad1b6705cfa4cadeec66cecc9225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turretHeadSprite: {fileID: 0}
 --- !u!1 &6571020515690715623
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +223,7 @@ GameObject:
   - component: {fileID: 6571020515690715628}
   - component: {fileID: 1170574082}
   m_Layer: 14
-  m_Name: Turret_Attack
+  m_Name: Turret_Attack 1
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,10 +237,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6571020515690715623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3856, y: 0, z: 0}
+  m_LocalPosition: {x: 2.348, y: -0.025, z: 0}
   m_LocalScale: {x: 1.709, y: 1.709, z: 1.709}
   m_Children:
-  - {fileID: 6571020515734166716}
+  - {fileID: 5971460961563706345}
   - {fileID: 215858394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -270,7 +284,7 @@ SpriteRenderer:
   m_SortingLayerID: 131528263
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4869100821958357468, guid: 7b9d75902a82e8142acd3261e2a7c7bc,
+  m_Sprite: {fileID: 5063140902295889735, guid: 7b9d75902a82e8142acd3261e2a7c7bc,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -343,48 +357,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.28044093}
   serializedVersion: 2
   m_Radius: 0.64
---- !u!1 &6571020515734166715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6571020515734166716}
-  - component: {fileID: 6571020515734166718}
-  m_Layer: 14
-  m_Name: TurretHead
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6571020515734166716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6571020515734166715}
-  m_LocalRotation: {x: -0, y: -0, z: 0.02612646, w: 0.99965864}
-  m_LocalPosition: {x: -0.046, y: 0.216, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5971460961563706345}
-  m_Father: {fileID: 6571020515690715627}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.9940002}
---- !u!114 &6571020515734166718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6571020515734166715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed19ad1b6705cfa4cadeec66cecc9225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _turretHeadSprite: {fileID: 0}

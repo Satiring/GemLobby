@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 
@@ -8,28 +9,30 @@ using UnityEngine.Diagnostics;
 [RequireComponent(typeof(SpriteRenderer),typeof(Animator))]
 public class TurretController : MonoBehaviour
 {
-    [Range(0f,20f)]
-    public float detectRadius = 1f;
+
+    // Config Data // Public
+    [Required]
+    public TurretData _data;
     
-    
-    private bool isDeploy;
+    // Cache Reference
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    public SpriteRenderer grabIcon;
-
     private CircleCollider2D _collider;
     
-    private TurretHeadController _head;
-    private ITargeteable _target;
-
-    private bool isPlayerNear;
     
-    [Range(0, 10)] public float speed;
-
-    public void Awake()
-    {
-        GetComponent<CircleCollider2D>();
-    }
+    // Parts Components
+    public SpriteRenderer grabIcon;
+    [Required]
+    public Transform shootTransform;
+    private TurretHeadController _head;
+    
+    
+    
+    // Useful
+    private bool isDeploy;
+    private bool isPlayerNear;
+    private ITargeteable _target;
+    private float delay;
 
 
     // Start is called before the first frame update
@@ -46,6 +49,7 @@ public class TurretController : MonoBehaviour
         isDeployed(false);
         isPlayerNear = false;
         grabIcon.enabled = false;
+        delay = _data.delayBetweenShoots;
     }
     
     private void WeaponLookAtTarget()
@@ -53,21 +57,45 @@ public class TurretController : MonoBehaviour
         Vector2 direction = _target.GetTarget().position - _head.transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            _head.transform.rotation = Quaternion.Slerp(_head.transform.rotation, rotation, speed * Time.deltaTime);
+            _head.transform.rotation = Quaternion.Slerp(_head.transform.rotation, rotation, _data.speed * Time.deltaTime);
     }
 
+    private void ShootToTarget()
+    {
+        Vector2 direction = _target.GetTarget().position - transform.position;
+        IDirigible bullet = (Instantiate(_data.bulletPrefab, shootTransform.position, Quaternion.identity)).GetComponent<IDirigible>();
+        bullet.SetDirection(direction);
+    }
+    
+    void OnDrawGizmosSelected()
+    {
+        // Display the explosion radius when selected
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _data.detectRadius);
+    }
+    
     private void DetectTarget()
     {
-        Collider2D[] ray = Physics2D.OverlapCircleAll(gameObject.transform.position,detectRadius);
-        bool isWallorWater = false;
+        Debug.Log("Detectando Objetivos");
+        Collider2D[] ray = Physics2D.OverlapCircleAll(gameObject.transform.position,_data.detectRadius);
+        ITargeteable targetSelected = null;
+        float minDistance = 9999999999f;
         
         foreach (var var in ray)
         {
-            if (var.GetComponent<WallController>()||var.GetComponent<WaterController>())
+            ITargeteable targetAux = var.GetComponent<ITargeteable>();
+            if (targetAux!=null)
             {
-                isWallorWater = true;
+                float distance = Vector3.Distance (transform.position, targetAux.GetTarget().position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    targetSelected = targetAux;
+                }
             }
         }
+
+        _target = targetSelected;
     }
 
     // Update is called once per frame
@@ -79,7 +107,12 @@ public class TurretController : MonoBehaviour
             if (_target != null)
             {
                 WeaponLookAtTarget();
-                
+                delay -= Time.deltaTime;
+                if (delay <= 0)
+                {
+                    ShootToTarget();
+                    delay = _data.delayBetweenShoots;
+                }                                    
             }
             else
             {
@@ -130,7 +163,6 @@ public class TurretController : MonoBehaviour
         {
             isPlayerNear = true;
             grabIcon.enabled = true;
-            Log.Debug("Player Entrando");
         }
     }
 
@@ -141,7 +173,6 @@ public class TurretController : MonoBehaviour
         {
             isPlayerNear = false;
             grabIcon.enabled = false;
-            Log.Debug("Player Saliendo");
         }
     }
 }

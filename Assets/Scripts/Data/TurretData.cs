@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-public class TurretData : MonoBehaviour
+[CreateAssetMenu(menuName = ("Data/Turret"))]
+public class TurretData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject bulletPrefab;
+    
+    [Range(0, 10)] 
+    public float speed;
+    
+    [Range(0f,20f)]
+    public float detectRadius = 1f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Range(0.001f, 2f)] public float delayBetweenShoots = 1f;
 }

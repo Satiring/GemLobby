@@ -7,6 +7,6 @@ public interface IHealth
     void Restore();
     void AddHealth(int health);
 
-    void SubscribeHealth(Action<int> action);
+    int GetHealth();
 
 }

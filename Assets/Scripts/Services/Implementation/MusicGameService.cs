@@ -10,13 +10,10 @@ public class MusicGameService :  IMusicGameService
     {
         //
         _data = Core.Data.Get<GameData>("gameData").MusicGameData;
-        if(_data)
-            Log.Debug("Music Game Data Loaded");
     }
 
     public void Start()
     {
-        Debug.Log("Music Game Service Start");
         _musicPlayer = new GameObject();
         _musicPlayer.AddComponent<AudioSource>();
         _audioSource = _musicPlayer.GetComponent<AudioSource>();

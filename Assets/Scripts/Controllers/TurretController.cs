@@ -31,7 +31,12 @@ public class TurretController : MonoBehaviour
     // Useful
     private bool isDeploy;
     private bool isPlayerNear;
+    
+    
+    [ShowInInspector]
     private ITargeteable _target;
+
+    private GameObject targetGameObject;
     private float delay;
 
 
@@ -54,17 +59,25 @@ public class TurretController : MonoBehaviour
     
     private void WeaponLookAtTarget()
     {
-        Vector2 direction = _target.GetTarget().position - _head.transform.position;
+        if (_target != null)
+        {
+            Vector2 direction = _target.GetTarget().transform.position - _head.transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            _head.transform.rotation = Quaternion.Slerp(_head.transform.rotation, rotation, _data.speed * Time.deltaTime);
+            _head.transform.rotation = Quaternion.Slerp(_head.transform.rotation, rotation, _data.speed * Time.deltaTime);    
+        }
+        
     }
 
     private void ShootToTarget()
     {
-        Vector2 direction = _target.GetTarget().position - transform.position;
-        IDirigible bullet = (Instantiate(_data.bulletPrefab, shootTransform.position, Quaternion.identity)).GetComponent<IDirigible>();
-        bullet.SetDirection(direction);
+        if (_target != null)
+        {
+            Vector2 direction = _target.GetTarget().transform.position - transform.position;
+            IDirigible bullet = (Instantiate(_data.bulletPrefab, shootTransform.position, Quaternion.identity)).GetComponent<IDirigible>();
+            bullet.SetDirection(direction);    
+        }
+        
     }
     
     void OnDrawGizmosSelected()
@@ -76,26 +89,39 @@ public class TurretController : MonoBehaviour
     
     private void DetectTarget()
     {
-        Debug.Log("Detectando Objetivos");
+
+        targetGameObject = null;
+        _target = null;
         Collider2D[] ray = Physics2D.OverlapCircleAll(gameObject.transform.position,_data.detectRadius);
         ITargeteable targetSelected = null;
         float minDistance = 9999999999f;
-        
-        foreach (var var in ray)
+
+        if (ray != null)
         {
-            ITargeteable targetAux = var.GetComponent<ITargeteable>();
-            if (targetAux!=null)
+            foreach (var var in ray)
             {
-                float distance = Vector3.Distance (transform.position, targetAux.GetTarget().position);
-                if (distance < minDistance)
+                ITargeteable targetAux = var.GetComponent<ITargeteable>();
+                if (targetAux!=null)
                 {
-                    minDistance = distance;
-                    targetSelected = targetAux;
+                    float distance = Vector3.Distance (transform.position, targetAux.GetTarget().transform.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        targetSelected = targetAux;
+                    }
                 }
             }
-        }
 
-        _target = targetSelected;
+            if (targetSelected != null)
+            {
+                targetSelected.SetTurret(this);
+                targetGameObject = targetSelected.GetTarget();
+                _target = targetSelected;
+            }
+
+             
+        }
+        
     }
 
     // Update is called once per frame
@@ -104,7 +130,7 @@ public class TurretController : MonoBehaviour
         
         if (isDeploy)
         {
-            if (_target != null)
+            if (targetGameObject)
             {
                 WeaponLookAtTarget();
                 delay -= Time.deltaTime;
@@ -174,5 +200,10 @@ public class TurretController : MonoBehaviour
             isPlayerNear = false;
             grabIcon.enabled = false;
         }
+    }
+
+    public void TargetDown()
+    {
+        DetectTarget();
     }
 }

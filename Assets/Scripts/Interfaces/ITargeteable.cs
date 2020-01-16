@@ -2,5 +2,6 @@
 
 public interface ITargeteable
 {
-    Transform GetTarget();
+    GameObject GetTarget();
+    void SetTurret(TurretController turret);
 }

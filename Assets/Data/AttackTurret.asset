@@ -15,5 +15,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4433621798214152336, guid: 2069b8e5673673e49acdb95d820e5a34,
     type: 3}
   speed: 3.38
-  detectRadius: 4.8
-  delayBetweenShoots: 1
+  detectRadius: 5.7
+  delayBetweenShoots: 0.74

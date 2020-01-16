@@ -17,6 +17,8 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
 
     public AudioClip gemSoundPickup;
 
+    private float timeLeft;
+    
 
     public void Start()
     {
@@ -24,6 +26,19 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = gemdata.gemSprite;
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        _boxCollider2D.enabled = false;
+        timeLeft = gemdata.jumpDuration;
+    }
+
+    private void Update()
+    {
+        Debug.Log("TimeLeft: " + timeLeft);
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
+        {
+            Log.Debug("Gema Activada");
+            _boxCollider2D.enabled = true;
+        }
     }
 
     public void Activate()
@@ -33,8 +48,6 @@ public class GemController : MonoBehaviour, ISpawneable, IRecolectable
         var landPoint = actualPosition + (nextPosition);
         Tween land = transform.DOJump(
             landPoint, gemdata.jumpPower, 0, gemdata.jumpDuration, false);
-        //StartCoroutine(Tools.StartCountdown(gemdata.maxLifeTime));
-         
         Destroy(gameObject, gemdata.maxLifeTime);
     }
 

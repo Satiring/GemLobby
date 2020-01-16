@@ -25,16 +25,13 @@ public class GameService  : MonoBehaviour, IGameService
        
         _gameStateMachine = new StateMachine();
         _gameData = Resources.Load<GameData>("defaultData");
-        if(_gameData)
-            Log.Debug("Game Data Loaded");
-        
+
         gameStateShared = _gameData.gameStateSharedData;
         gameStateShared.gemsPicked = 0;
     }
 
     public void Start()
     {
-        StartGame();
         LoadGameData();
     }
 
@@ -49,20 +46,19 @@ public class GameService  : MonoBehaviour, IGameService
     
     public void StartGame()
     {
-        Debug.Log("START GAME");
-       // _gameStateMachine.ChangeState(new TestState());
-       Core.Music.PlayRandom();
+        Restart();
+        Core.SceneService.LoadScene(1);
     }
 
     public void FinishGame()
     {
-        Log.Debug("Terminado el juego");
         Core.SceneService.LoadScene(2);
     }
 
     public void Restart()
     {
         gameStateShared.gemsPicked = 0;
+        Core.Data.Get<PlayerController>("player").InitializeHealth();
     }
 
     private void LoadGameData()

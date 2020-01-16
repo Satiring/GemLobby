@@ -9,11 +9,14 @@ TFM Game
 
 ## ¿Cuando estara listo?
 
-La version jugable deberia de haber estado hace mucho, por lo que o bien no estara nunca, o dentro de poco.
+La version Alpha esta ya lista.
+[Itch.io](https://satiring.itch.io/gemlobby)
+
+A disfrutar mientras sigo añadiendo contenido.
 
 ## ¿Que debo esperar?
 
-Nada, deberias de atender tus cosas.
+Ahora mismo estan las cosas calentitas, asique esta guay que me des tu feedback.
 
 ## ¿Quienes lo estamos haciendo?
 
@@ -23,6 +26,8 @@ Nada, deberias de atender tus cosas.
 
 ## Historial de versiones
 
+* 0.5
+    * ALPHA VERSION
 * 0.0.2
     * Trabajo aun mas en progreso
 * 0.0.1

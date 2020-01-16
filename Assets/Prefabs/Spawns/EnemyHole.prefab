@@ -125,4 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnData: {fileID: 11400000, guid: e2c93280e90238d4c87c9eb8d6fae3c7, type: 2}
+  gemsToActivate: 10
+  gameStateShared: {fileID: 11400000, guid: 13e6c245249483a4da0f3b2dcb709d82, type: 2}
+  isTemporized: 1
   isLooped: 1

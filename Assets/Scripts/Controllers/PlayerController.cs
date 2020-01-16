@@ -16,14 +16,13 @@ public class PlayerController : MonoBehaviour
 
     // Private Components
     private MovementComponent _movementComponent;
-    private HealthComponent _healthPlayer;
+    public HealthSharedData _healthPlayerShared;
     private WeaponHandlerComponent _weaponHandler;
     private TurretHandlerComponent _turretHandler;
     
     // Private References
         private int _actualHealth;
         
-        private Action<int> checkMethod;
         
         // TODO - Implement with States
         private bool isDead = false;
@@ -33,13 +32,7 @@ public class PlayerController : MonoBehaviour
     // COlliders
     private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
-
-
-
-    public void Awake()
-    {
-        checkMethod = CheckLife;
-    }
+    
 
 
     // Start is called before the first frame update
@@ -57,12 +50,9 @@ public class PlayerController : MonoBehaviour
             _turretHandler = GetComponent<TurretHandlerComponent>();
             
             
-            // Health Component
-            _healthPlayer = gameObject.GetComponent<HealthComponent>();
-            _healthPlayer.Initialize(_playerData.maxHealth);
-            _healthPlayer.SubscribeHealth(checkMethod);
-            
-            
+            InitializeHealth();
+
+
             // COLLIDERS
             _boxCollider = GetComponent<BoxCollider2D>();
             _circleCollider = GetComponent<CircleCollider2D>();
@@ -81,20 +71,29 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-    private void CheckLife(int actualHealth)
+    public void InitializeHealth()
     {
-        _actualHealth = actualHealth;
-        if (actualHealth <= 0)
-        {
-            PlayerDead();
-        }
-        Debug.Log("Actual Health: " + actualHealth);
+        // Health Component
+
+        _healthPlayerShared.Initialize(_playerData.maxHealth);
+    }
+
+    public int GetActualHealth()
+    {
+        return _healthPlayerShared.GetHealth();   
+    }
+    
+    private void CheckLife()
+    {
+        if (_healthPlayerShared.GetHealth() <= 0)
+            {
+                PlayerDead();
+            }
+
     }
 
     private void PlayerDead()
     {
-        // TODO Refactor STATES
         _boxCollider.enabled = false;
         Core.Camera.Shake("Basic");
         isDead = true;
@@ -102,6 +101,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isDead", true);
         StartCoroutine(Tools.FlashSprite(_spriteRenderer));
         Destroy(this.gameObject, 5f);
+        Core.Game.FinishGame();
     }
 
     // Update is called once per frame
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
+            CheckLife();
             // TODO Refactor Input Manager
             float inputX = Core.InputService.GetXAxisValue();
             float inputY = Core.InputService.GetYAxisValue();
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
             
             if (GameStateShared)
             {
-                if (GameStateShared.gemsPicked >= 10)
+                if (GameStateShared.gemsPicked >= 100)
                 {
                 
                     Core.Game.FinishGame();
@@ -156,28 +157,30 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        IRecolectable pickable = other.gameObject.GetComponent<IRecolectable>();
+        if(pickable != null)
+        {
+
+                pickable.PickUp();
+                GameStateShared.gemsPicked++;
+
+        }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         
         IDamageDealer DamageDealer = other.gameObject.GetComponent<IDamageDealer>();
         if (DamageDealer != null)
         {
             if (other.gameObject.GetComponent<EnemyController>() != null)
             {
-                _healthPlayer.DoDamage(DamageDealer.Damage());
+                Tools.FlashSprite(_spriteRenderer);
+                _healthPlayerShared.DoDamage(DamageDealer.Damage());
             }
             
         }
-        else
-        {
-            IRecolectable pickable = other.gameObject.GetComponent<IRecolectable>();
-
-            if (pickable !=null)
-            {
-                pickable.PickUp();
-                GameStateShared.gemsPicked++;
-            }
-                
-        }
-        
     }
 
     public void DeleteTurret()

@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider2D;
 
+    private TurretController _turret;
 
     // Data Info
     // TODO Refactor Data Unification
@@ -79,9 +80,20 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     
     private void ProcessDeath()
     {
+        if (_turret != null)
+        {
+            Log.Debug("Aviso a la torreta de que busque nuevo objetivo.");
+            _turret.TargetDown();
+            
+        }
+            
+        
+        
         isEnemyDead(true);
         _collider2D.enabled = false;
+        
         Destroy(gameObject, 0.3f);
+        
     }
 
     public void ProcessHit(int damage)
@@ -140,9 +152,14 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawneable, ITargete
     }
     
     
-    public Transform GetTarget()
+    public GameObject GetTarget()
     {
-        return transform;
+        return gameObject;
+    }
+
+    public void SetTurret(TurretController turret)
+    {
+        _turret = turret;
     }
 
     public int Damage()

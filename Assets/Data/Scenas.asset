@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a09360207db48c58aa7f1855f75ca07, type: 3}
   m_Name: Scenas
   m_EditorClassIdentifier: 
-  isActive: 0
-  initialSceneNumber: 1
+  isActive: 1
+  initialSceneNumber: 0
   sceneSetupList:
   - sceneName: MainMenu
     sceneNumber: 0

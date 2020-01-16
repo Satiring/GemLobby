@@ -7,6 +7,10 @@ public class SpawnerComponent : MonoBehaviour
     [Required]
     public SpawnData spawnData;
 
+    public int gemsToActivate = 0;
+    public GameStateSharedData gameStateShared;
+    
+    public bool isTemporized = false; 
     public bool isLooped = false;
     
     private bool isActive;
@@ -34,7 +38,6 @@ public class SpawnerComponent : MonoBehaviour
             isFinished = false;
             itemSpawned = 0;
             elapsedTime = 0;
-            Generate();
         }
     }
     
@@ -55,19 +58,35 @@ public class SpawnerComponent : MonoBehaviour
     
     public void Update()
     {
-        if (isActive&&!isFinished)
+        if (isTemporized)
         {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime > spawnData.spawnRate)
+            if (gameStateShared.gemsPicked >= gemsToActivate)
             {
-                elapsedTime = 0;
-                Generate();
-                if (!isLooped)
+                Activate();
+                isTemporized = false;
+            }
+            else
+            {
+                isActive = false;
+            }
+        }
+        else
+        {
+            if (isActive&&!isFinished)
+            {
+                elapsedTime += Time.deltaTime;
+                if (elapsedTime > spawnData.spawnRate)
                 {
-                    isFinished = (itemSpawned > spawnData.spawnItemsTotal);
+                    elapsedTime = 0;
+                    Generate();
+                    if (!isLooped)
+                    {
+                        isFinished = (itemSpawned > spawnData.spawnItemsTotal);
+                    }
                 }
             }
         }
+       
     }
     
 

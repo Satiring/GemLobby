@@ -40415,22 +40415,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291517908}
     m_Modifications:
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyHole (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 3164753382884367084, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40486,6 +40470,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyHole (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 3164753382884367085, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -41711,22 +41711,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291517908}
     m_Modifications:
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyHole BottomLeft
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 3164753382884367084, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41782,6 +41766,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyHole BottomLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 3164753382884367085, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -41802,6 +41802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isLooped
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367056, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: gemsToActivate
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e10e478d4f5e42643b126f7b300dc6b8, type: 3}
@@ -43242,22 +43247,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291517908}
     m_Modifications:
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyHole TopRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 3164753382884367084, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -43313,6 +43302,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyHole TopRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164753382884367057, guid: e10e478d4f5e42643b126f7b300dc6b8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 3164753382884367085, guid: e10e478d4f5e42643b126f7b300dc6b8,
         type: 3}
       propertyPath: m_SortingLayerID

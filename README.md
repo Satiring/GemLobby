@@ -14,6 +14,14 @@ La version Alpha esta ya lista.
 
 A disfrutar mientras sigo añadiendo contenido.
 
+## Existe Documentacion
+
+Si, Notion MADAFACA.
+
+[Notion GDD Active Document](https://www.notion.so/satiring/Gem-Lobby-93927a6cd1f441e78ad13ffa1f763abf)
+
+** El documento esta constantemente actualizandose.
+
 ## ¿Que debo esperar?
 
 Ahora mismo estan las cosas calentitas, asique esta guay que me des tu feedback.
